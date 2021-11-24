@@ -12,7 +12,7 @@ public class helloController {
     public String index(){
 
         log.info("index 가나요? >ㅡ< ");
-
+        // 아 어렵다...
         return "index";
 
     }
