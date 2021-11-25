@@ -1,12 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::fragment-header">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>error</title>
 </head>
 <body>
+<div th:replace="fragments/bodyHeader::fragment-nav"/>
 
-<h1>Hello! Spring boot! >ㅡ<</h1>
-아 존나 어렵네 쉬바!!!!!
+<div class="container">
+    <div class="row">
+        <!-- posts 목록 출력 -->
+        <table class="table table-striped text-center">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">title</th>
+                <th scope="col">writer</th>
+                <th scope="col">date</th>
+                <th scope="col">viewCount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post:${posts}">
+                <td th:text="${post.getId()}" width="10%"> 1 </td>
+                <td th:text="${post.getTitle()}" width="50%"> 1 </td>
+                <td th:text="${post.getWriter()}" width="20%"> 1 </td>
+                <td th:text="${post.getCreateDate()}" width="10%"> 1 </td>
+                <td th:text="${post.getViewCount()}" with="10%"> 1 </td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- posts 목록 출력 끝-->
+    </div>
+    <div class="row">
+        <div class="row">
+            <div class="col bg-success">search layout</div>
+            <div class="col"><button class="btn btn-secondary float-end" onclick="location.href='/posts/save'">글 등록</button></div>
+        </div>
+        <div class="row bg-primary" >paging layout</div>
+    </div>
+</div>
+
+
+
+
+<div th:replace="fragments/footer::fragments-footer" />
 </body>
 </html>

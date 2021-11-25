@@ -1,5 +1,7 @@
 package com.project.baedeokcar.domain.posts;
 
+import com.project.baedeokcar.domain.BaseTimeEntity;
+import com.project.baedeokcar.web.dto.PostsListResponseDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ import javax.persistence.Id;
 @Getter
 @NoArgsConstructor
 @ToString
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
 //    @Id @GeneratedValue
 //    private Long no;
