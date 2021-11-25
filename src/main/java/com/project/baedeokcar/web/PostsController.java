@@ -21,23 +21,4 @@ public class PostsController {
         return "redirect:/";
     }
 
-//    @ResponseBody
-//    @PostMapping("/posts")
-//    public String save(@RequestParam String writer,
-//                       @RequestParam String title,
-//                       @RequestParam String content,
-//                       @RequestParam String pwd
-//                       ) {
-//        log.info("post-save controller");
-//        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
-//                .title(title)
-//                .content(content)
-//                .writer(writer)
-//                .pwd(pwd)
-//                .build();
-//        postsService.save(requestDto);
-//
-//        return requestDto.toString();
-//    }
-
 }
