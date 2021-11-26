@@ -1,5 +1,6 @@
-package com.project.baedeokcar.domain.posts;
+package com.project.baedeokcar.repository;
 
+import com.project.baedeokcar.domain.posts.Posts;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;

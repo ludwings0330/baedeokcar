@@ -1,32 +1,28 @@
 package com.project.baedeokcar.domain.posts;
 
 import com.project.baedeokcar.domain.BaseTimeEntity;
-import com.project.baedeokcar.web.dto.PostsListResponseDto;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+// ModelMapper 사용을 위해
 @Getter
+@Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class Posts extends BaseTimeEntity {
 
-//    @Id @GeneratedValue
-//    private Long no;
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
     private String content;
     private String writer;
     private String pwd;
-
     private int viewCount;
 
     @Builder

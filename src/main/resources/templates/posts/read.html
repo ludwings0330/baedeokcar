@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">게시글 조회</h1>
+        </div>
+
+
+        <div class="card mb-4" style="margin-top: 30px;">
+            <div class="card-body">
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="id" name="id" th:value="${postsDTO.id}" readonly>
+                    <label class="label-head" for="id">글번호</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="title" name="title" th:value="${postsDTO.title}"
+                           readonly>
+                    <label class="label-head" for="title">제목</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="content" name="content" style="height: 200px;"
+                              readonly>[[${postsDTO.content}]]</textarea>
+                    <label class="label-head" for="content">내용</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="writer" id="writer" name="writer" th:value="${postsDTO.writer}"
+                           readonly>
+                    <label class="label-head" for="writer">작성자</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="createdDate" name="createdDate"
+                           th:value="${#temporals.format(postsDTO.createdDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+                    <label class="label-head" for="createdDate">작성 날짜</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="modifiedDate" name="modifiedDate"
+                           th:value="${#temporals.format(postsDTO.modifiedDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+                    <label class="label-head" for="modifiedDate">수정 날짜</label>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="button">수정</button>
+        <button class="btn btn-secondary" type="button">목록</button>
+
+
+    </th:block>
+
+</th:block>
+</html>
