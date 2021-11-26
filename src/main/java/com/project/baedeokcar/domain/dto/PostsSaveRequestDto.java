@@ -1,4 +1,4 @@
-package com.project.baedeokcar.web.dto;
+package com.project.baedeokcar.domain.dto;
 
 import com.project.baedeokcar.domain.posts.Posts;
 import lombok.*;

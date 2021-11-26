@@ -34,7 +34,23 @@
     </div>
     <div class="row">
         <div class="row">
-            <div class="col bg-success">search layout</div>
+            <div class="col">
+                <form action="/search" method="GET">
+                    <div class="btn-toolbar mb-3">
+                        <div class="input-group me-2">
+                            <select name="factor" class="form-select mr-2">
+                                <option value="title">title</option>
+                                <option value="writer">writer</option>
+                                <option value="content">content</option>
+                            </select>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <input type="text" name="keyword" placeholder="검색어 입력">
+                            <button class="btn btn-secondary"> Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="col"><button class="btn btn-secondary float-end" onclick="location.href='/posts/save'">글 등록</button></div>
         </div>
         <div class="row bg-primary" >paging layout</div>

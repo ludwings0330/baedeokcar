@@ -3,12 +3,16 @@ package com.project.baedeokcar.service;
 import com.project.baedeokcar.domain.dto.PostsDTO;
 import com.project.baedeokcar.domain.posts.Posts;
 import com.project.baedeokcar.repository.PostsRepository;
+import com.project.baedeokcar.domain.dto.PostsListResponseDto;
+import com.project.baedeokcar.domain.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -31,5 +35,17 @@ public class PostsServiceImpl implements PostsService {
 
         return result.isPresent() ? modelMapper.map(result.get(), PostsDTO.class) : null;
 
+    }
+
+    @Override
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Long save(PostsSaveRequestDto postsListRequestDto) {
+        return postsRepository.save(postsListRequestDto.toEntity()).getId();
     }
 }
