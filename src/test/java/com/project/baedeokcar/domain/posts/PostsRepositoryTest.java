@@ -107,7 +107,7 @@ class PostsRepositoryTest {
 
     // 수정 테스트
     // 등록과 동일한 save() 이용
-    @Test
+ /*   @Test
     public void testUpdate() {
 
         Optional<Posts> result = postsRepository.findById(1L);
@@ -124,7 +124,7 @@ class PostsRepositoryTest {
             postsRepository.save(posts);
         }
 
-    }
+    }*/
 
     // 삭제 테스트
     @Test

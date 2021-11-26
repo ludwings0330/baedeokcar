@@ -13,7 +13,7 @@ public class PostsDTOTests {
     @Autowired
     ModelMapper modelMapper;
 
-    @Test
+   /* @Test
     public void modelMapperTest() {
 
         Posts posts = Posts.builder().id(101L).title("ModelMapper 테스트").content("Entity <-> DTO 매핑").writer("MM").pwd("1234").viewCount(0).build();
@@ -39,5 +39,5 @@ public class PostsDTOTests {
 
 
     }
-
+*/
 }
