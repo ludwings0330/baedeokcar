@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::fragment-header">
+    <meta charset="UTF-8">
+    <title>error</title>
+</head>
+<body>
+<div th:replace="fragments/bodyHeader::fragment-nav"/>
+
+<div class="container">
+    <div class="row">
+        <!-- posts 목록 출력 -->
+        <table class="table table-striped text-center">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">title</th>
+                <th scope="col">writer</th>
+                <th scope="col">date</th>
+                <th scope="col">viewCount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post:${posts}">
+                <td th:text="${post.getId()}" width="10%"> 1 </td>
+                <td th:text="${post.getTitle()}" width="50%"> 1 </td>
+                <td th:text="${post.getWriter()}" width="20%"> 1 </td>
+                <td th:text="${post.getCreateDate()}" width="10%"> 1 </td>
+                <td th:text="${post.getViewCount()}" width="10%"> 1 </td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- posts 목록 출력 끝-->
+    </div>
+    <div class="row">
+        <div class="row">
+            <div class="col">
+                <form action="/search" method="GET">
+                    <div class="btn-toolbar mb-3">
+                        <div class="input-group me-2">
+                            <select name="factor" class="form-select mr-2">
+                                <option value="title">title</option>
+                                <option value="writer">writer</option>
+                                <option value="content">content</option>
+                            </select>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <input type="text" name="keyword" placeholder="검색어 입력">
+                            <button class="btn btn-secondary"> Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col"><button class="btn btn-secondary float-end" onclick="location.href='/posts/save'">글 등록</button></div>
+        </div>
+        <div class="row bg-primary" >paging layout</div>
+    </div>
+</div>
+
+
+
+
+<div th:replace="fragments/footer::fragments-footer" />
+</body>
+</html>
