@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.PostConstruct;
 
@@ -24,6 +25,7 @@ public class IndexController {
         return "index";
     }
 
+
     @GetMapping("/posts/save")
     public String saveForm() {
         return "posts/posts-save";
@@ -31,7 +33,7 @@ public class IndexController {
 
     @PostConstruct
     public void init() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             String title = "test title" + i;
             String content = "test content" + i;
             String writer = "test writer";
