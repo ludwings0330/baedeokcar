@@ -1,38 +1,46 @@
 package com.project.baedeokcar.domain.posts;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.project.baedeokcar.domain.BaseTimeEntity;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+// ModelMapper 사용을 위해
 @Getter
+@Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
-//    @Id @GeneratedValue
-//    private Long no;
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
     private String content;
     private String writer;
     private String pwd;
-
     private int viewCount;
 
-    @Builder
-    public Posts(String title, String content, String writer, String pwd) {
+    // 게시글 수정을 위한 메소드
+    public void changeTitle(String title) {
         this.title = title;
-        this.content = content;
-        this.writer = writer;
-        this.pwd = pwd;
-        this.viewCount = 0;
     }
+
+    public void changeContent(String content) {
+        this.content = content;
+    }
+
+    public void changeWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public void changePwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+
 }
