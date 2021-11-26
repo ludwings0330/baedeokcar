@@ -33,7 +33,7 @@ public class IndexController {
 
     @PostConstruct
     public void init() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             String title = "test title" + i;
             String content = "test content" + i;
             String writer = "test writer";

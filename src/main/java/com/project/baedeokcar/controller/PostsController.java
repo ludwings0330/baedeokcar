@@ -1,6 +1,7 @@
 package com.project.baedeokcar.controller;
 
 import com.project.baedeokcar.domain.dto.PostsDTO;
+import com.project.baedeokcar.domain.dto.PostsListResponseDto;
 import com.project.baedeokcar.service.PostsService;
 import com.project.baedeokcar.domain.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -12,15 +13,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/posts")
 public class PostsController {
 
     private final PostsService postsService;
 
-    @GetMapping("/read")
+    @GetMapping("/posts/read")
     public void read(Long id, Model model) {
 
         log.info("---------- /posts/read GET 호출 ----------");
@@ -37,4 +39,14 @@ public class PostsController {
         Long Id = postsService.save(requestDto);
         return "redirect:/";
     }
+
+    @GetMapping("/search")
+    public String search(String factor, String keyword, Model model) {
+        List<PostsListResponseDto> postsList = postsService.search(factor, keyword);
+
+        model.addAttribute("posts", postsList);
+
+        return "index";
+    }
+
 }
