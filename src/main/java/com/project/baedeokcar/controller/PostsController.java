@@ -46,7 +46,7 @@ public class PostsController {
 
         model.addAttribute("posts", postsList);
 
-        return "index";
+        return "posts/posts-list";
     }
 
 }
