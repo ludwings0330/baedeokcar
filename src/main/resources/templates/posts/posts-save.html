@@ -1,50 +1,52 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header::fragment-header">
-    <meta charset="UTF-8">
-    <title>error</title>
-</head>
-<body>
-<div th:replace="fragments/bodyHeader::fragment-nav"/>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<div class="container">
-    <div class="row">
-        <div class="row">
-            <h1>게시글 작성</h1>
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">게시글 작성</h1>
         </div>
-        <div class="row">
-            <form action="/posts" method="post">
-                <div class="form-group">
-                    <label for="title">title</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="input title" required>
-                </div>
 
-                <div class="form-group">
-                    <label for="writer">writer</label>
-                    <input type="text" id="writer" name="writer" class="form-control" placeholder="input writer name" required>
-                </div>
 
-                <div class="form-group">
-                    <label for="pwd">password</label>
-                    <input type="text" id="pwd" name="pwd" class="form-control" placeholder="input content password" required>
-                </div>
+        <div class="card mb-4" style="margin-top: 30px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="row">
+                        <form action="/posts" method="post">
+                            <div class="form-group my-3">
+                                <label for="title">title</label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="input title" required>
+                            </div>
 
-                <div class="form-group">
-                    <label for="content">content</label>
-                    <textarea id="content" name="content" class="form-control" rows=20 placeholder="input content" required></textarea>
+                            <div class="form-group my-3">
+                                <label for="writer">writer</label>
+                                <input type="text" id="writer" name="writer" class="form-control" placeholder="input writer name" required>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label for="pwd">password</label>
+                                <input type="text" id="pwd" name="pwd" class="form-control" placeholder="input content password" required>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label for="content">content</label>
+                                <textarea id="content" name="content" class="form-control" rows=20 placeholder="input content" required></textarea>
+                            </div>
+                            <div class="m-1 float-end" >
+                                <button class="btn btn-primary " type="submit">등록</button>
+                                <button class="btn btn-secondary " onclick="location.href='/'">취소</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="m-1 float-end" >
-                    <button class="btn btn-primary " type="submit">등록</button>
-                    <button class="btn btn-secondary " onclick="location.href='/'">취소</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
 
 
+    </th:block>
 
-
-<div th:replace="fragments/footer::fragments-footer" />
-</body>
+</th:block>
 </html>
+
