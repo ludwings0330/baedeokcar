@@ -11,6 +11,10 @@ public interface PostsService {
 
     PostsDTO read(Long id);
 
+    void modify(PostsDTO postsDTO);
+
+    void remove(Long id);
+
     public List<PostsListResponseDto> findAllDesc();
 
     public Long save(PostsSaveRequestDto postsSaveRequestDto);
