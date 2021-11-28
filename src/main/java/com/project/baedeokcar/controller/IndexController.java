@@ -18,11 +18,19 @@ public class IndexController {
 
     private final PostsService postsService;
 
+
+    @ResponseBody
+    @GetMapping("/test")
+    public String test(Model model) {
+        model.addAttribute("posts", postsService.findAllDesc());
+        return "test Page";
+    }
+
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
 
-        return "index";
+        return "posts/posts-list";
     }
 
 
