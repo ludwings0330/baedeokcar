@@ -71,7 +71,6 @@ public class PostsController {
 
     /**
      * 게시물 저장 메소드
-     *
      * @param requestDto
      * @return
      */
@@ -81,15 +80,4 @@ public class PostsController {
         Long Id = postsService.save(requestDto);
         return "redirect:/posts";
     }
-
-    @GetMapping("/search")
-    public String search(String factor, String keyword, Model model,
-                         @PageableDefault(size = 20, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        List<PostsResponseDto> postsList = postsService.search(factor, keyword);
-
-        model.addAttribute("posts", postsList);
-
-        return "posts/posts-list";
-    }
-
 }
