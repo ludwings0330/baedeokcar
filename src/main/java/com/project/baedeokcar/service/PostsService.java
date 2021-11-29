@@ -12,16 +12,7 @@ public interface PostsService {
 
     PostsDTO read(Long id);
 
-    public List<PostsResponseDto> findAllDesc();
-
     public Long save(PostsSaveRequestDto postsSaveRequestDto);
 
-    public List<PostsResponseDto> search(String keyword);
-
-    public List<PostsResponseDto> search(String factor, String keyword);
-
-    public Page<PostsResponseDto> search(String factor, String keyword, Pageable pageable);
-
-    public Page<PostsResponseDto> getPostsList(Pageable pageable);
     public Page<PostsResponseDto> getPostsList(String option, String keyword, Pageable pageable);
 }
