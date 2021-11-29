@@ -1,5 +1,6 @@
 package com.project.baedeokcar.controller;
 
+import com.project.baedeokcar.aop.PerfLogging;
 import com.project.baedeokcar.domain.dto.PostsDTO;
 import com.project.baedeokcar.domain.dto.PostsResponseDto;
 import com.project.baedeokcar.service.PostsService;
@@ -54,6 +55,7 @@ public class IndexController {
 
 
     @GetMapping("/posts/save")
+    @PerfLogging
     public String saveForm() {
         return "posts/posts-save";
     }

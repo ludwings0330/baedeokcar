@@ -1,5 +1,6 @@
 package com.project.baedeokcar.service;
 
+import com.project.baedeokcar.aop.PerfLogging;
 import com.project.baedeokcar.domain.dto.PostsDTO;
 import com.project.baedeokcar.domain.dto.PostsResponseDto;
 import com.project.baedeokcar.domain.dto.PostsSaveRequestDto;
@@ -63,11 +64,13 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
+    @PerfLogging
     public Long save(PostsSaveRequestDto postsListRequestDto) {
         return postsRepository.save(postsListRequestDto.toEntity()).getId();
     }
 
     @Override
+    @PerfLogging
     public Page<PostsResponseDto> getPostsList(String option, String keyword, Pageable pageable) {
         Page<Posts> posts = postsRepository.findPosts(option, keyword, pageable);
 
