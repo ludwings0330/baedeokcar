@@ -23,13 +23,14 @@
                     </thead>
                     <tbody>
                     <tr th:each="post:${posts}">
-                        <td th:text="${post.getId()}" width="10%"> 1 </td>
-<!--                        <td th:text="${post.getTitle()}" width="50%"> 1 </td>-->
-                        <td><a th:href="@{posts/read(id=${post.getId()})}" th:text="${post.getTitle()}" class="link-secondary">1</a></td>
+                        <td th:text="${post.getId()}" width="10%"> 1</td>
+                        <!--                        <td th:text="${post.getTitle()}" width="50%"> 1 </td>-->
+                        <td><a th:href="@{posts/read(id=${post.getId()})}" th:text="${post.getTitle()}"
+                               class="link-secondary">1</a></td>
 
-                        <td th:text="${post.getWriter()}" width="20%"> 1 </td>
-                        <td th:text="${post.getCreateDate()}" width="10%"> 1 </td>
-                        <td th:text="${post.getViewCount()}" width="10%"> 1 </td>
+                        <td th:text="${post.getWriter()}" width="20%"> 1</td>
+                        <td th:text="${post.getCreateDate()}" width="10%"> 1</td>
+                        <td th:text="${post.getViewCount()}" width="10%"> 1</td>
                     </tr>
                     </tbody>
                 </table>
@@ -39,7 +40,7 @@
                             <form action="/search" method="GET">
                                 <div class="btn-toolbar mb-3 ms-3">
                                     <div class="input-group me-2">
-                                        <select name="factor" class="form-select mr-2">
+                                        <select name="factor" class="form-select mr-2" style="border-color: #6c757d">
                                             <option value="title">title</option>
                                             <option value="writer">writer</option>
                                             <option value="content">content</option>
@@ -52,7 +53,10 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col"><button class="btn btn-secondary float-end" onclick="location.href='/posts/save'">글 등록</button></div>
+                        <div class="col">
+                            <button class="btn btn-secondary float-end" onclick="location.href='/posts/save'">글 등록
+                            </button>
+                        </div>
                     </div>
                     <div class="form-control bg-primary text-center" style="width: 50%">paging layout</div>
                 </div>
