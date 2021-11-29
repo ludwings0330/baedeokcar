@@ -63,13 +63,6 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public List<PostsResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
-                .map(PostsResponseDto::new)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public Long save(PostsSaveRequestDto postsListRequestDto) {
         return postsRepository.save(postsListRequestDto.toEntity()).getId();
     }

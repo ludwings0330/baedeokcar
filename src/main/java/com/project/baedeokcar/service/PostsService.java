@@ -16,8 +16,6 @@ public interface PostsService {
 
     void remove(Long id);
 
-    public List<PostsResponseDto> findAllDesc();
-
     public Long save(PostsSaveRequestDto postsSaveRequestDto);
 
     public Page<PostsResponseDto> getPostsList(String option, String keyword, Pageable pageable);
