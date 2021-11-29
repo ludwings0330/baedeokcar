@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 public class
-PostsListResponseDto {
+PostsResponseDto {
     private Long id;
     private String title;
     private String content;
@@ -19,7 +19,7 @@ PostsListResponseDto {
     private int viewCount;
 
 
-    public PostsListResponseDto(Posts entity) {
+    public PostsResponseDto(Posts entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();

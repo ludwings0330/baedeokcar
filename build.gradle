@@ -8,6 +8,8 @@ plugins {
     id 'org.springframework.boot' version '2.6.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    // querydsl 추가
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.project'
@@ -40,26 +42,37 @@ dependencies {
     // Thymeleaf 에서 사용할 java8 날짜 관련 라이브러리
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time'
 
-    // QueryDSL
+    //querydsl 추가
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-    annotationProcessor(
-            "javax.persistence:javax.persistence-api",
-            "javax.annotation:javax.annotation-api",
-            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 
     // ModelMapper
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.4'
 
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
-        }
-    }
-}
-
 test {
     useJUnitPlatform()
 }
+
+//querydsl 추가 시작
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+   jpa = true
+   querydslSourcesDir = querydslDir
+}
+sourceSets {
+   main.java.srcDir querydslDir
+}
+compileQuerydsl{
+   options.annotationProcessorPath = configurations.querydsl
+}
+configurations {
+   compileOnly {
+      extendsFrom annotationProcessor
+   }
+   querydsl.extendsFrom compileClasspath
+}
+//querydsl 추가 끝
+
