@@ -14,17 +14,21 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
         <link th:href="@{/sb_admin/css/styles.css}" rel="stylesheet"/>
 
+        <!--jQuery-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
                 crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 crossorigin="anonymous"></script>
         <script th:src="@{/sb_admin/js/scripts.js}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-                crossorigin="anonymous"></script>
-        <script th:src="@{/sb_admin/assets/demo/chart-area-demo.js}"></script>
-        <script th:src="@{/sb_admin/assets/demo/chart-bar-demo.js}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script th:src="@{/sb_admin/js/datatables-simple-demo.js}"></script>
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+                 crossorigin="anonymous"></script>
+         <script th:src="@{/sb_admin/assets/demo/chart-area-demo.js}"></script>
+         <script th:src="@{/sb_admin/assets/demo/chart-bar-demo.js}"></script>
+         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+         <script th:src="@{/sb_admin/js/datatables-simple-demo.js}"></script>-->
 
         <style>
 
@@ -59,7 +63,7 @@
     <body class="sb-nav-fixed" style="font-family: S-CoreDream-3Light">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="#" style="font-family: S-CoreDream-6Bold">BaeDeok Car</a>
+        <a class="navbar-brand ps-3" th:href="@{/}" style="font-family: S-CoreDream-6Bold">BaeDeok Car</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -87,13 +91,18 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">메인</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" th:href="@{/}">
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             홈
                         </a>
                         <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
                             렌트 예약
+                        </a>
+
+                        <a class="nav-link" th:href="@{/posts}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            후기 게시판
                         </a>
 
                         <!--다중 collapse 필요시 사용-->
