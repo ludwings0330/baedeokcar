@@ -32,12 +32,32 @@ public class PostsServiceImpl implements PostsService {
     @Override
     public PostsDTO read(Long id) {
 
-        log.info("---------- read 호출 ----------");
-        log.info("id : " + id);
-
+        // modelMapper 사용
         Optional<Posts> result = postsRepository.findById(id);
+        log.info("result : " + result);
+
+        // 조회수 증가
+        postsRepository.updateViewCount(id);
 
         return result.isPresent() ? modelMapper.map(result.get(), PostsDTO.class) : null;
+
+    }
+
+    @Override
+    public void modify(PostsDTO postsDTO) {
+
+        Posts posts = modelMapper.map(postsDTO, Posts.class);
+        log.info("posts : " + posts);
+
+        postsRepository.save(posts);
+    }
+
+    @Override
+    public void remove(Long id) {
+
+        log.info("id : " + id);
+
+        postsRepository.deleteById(id);
 
     }
 
@@ -52,14 +72,13 @@ public class PostsServiceImpl implements PostsService {
     public Long save(PostsSaveRequestDto postsListRequestDto) {
         return postsRepository.save(postsListRequestDto.toEntity()).getId();
     }
+
     @Override
     public List<PostsResponseDto> search(String keyword) {
         return postsRepository.findAllByTitleContainingOrderByIdDesc(keyword).stream()
                 .map(PostsResponseDto::new)
                 .collect(Collectors.toList());
     }
-
-
 
     @Override
     public List<PostsResponseDto> search(String factor, String keyword) {
