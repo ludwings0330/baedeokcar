@@ -26,6 +26,7 @@ public class PostsController {
 
     private final PostsService postsService;
 
+    // 조회 및 수정 페이지
     @GetMapping({"/posts/read", "/posts/modify"})
     public void read(Long id, Model model) {
 
@@ -40,6 +41,7 @@ public class PostsController {
 
     }
 
+    // 수정 기능
     @PostMapping("/posts/modify")
     public String modify(PostsDTO postsDTO, RedirectAttributes redirectAttributes) {
 
@@ -54,6 +56,7 @@ public class PostsController {
 
     }
 
+    // 삭제 기능
     @PostMapping("/posts/remove")
     public String remove(Long id) {
 
