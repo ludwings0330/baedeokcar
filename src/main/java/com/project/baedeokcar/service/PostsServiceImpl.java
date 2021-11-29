@@ -51,10 +51,11 @@ public class PostsServiceImpl implements PostsService {
     @Override
     public void remove(Long id) {
 
+        log.info("id : " + id);
+
         postsRepository.deleteById(id);
 
     }
-
 
     @Override
     public List<PostsListResponseDto> findAllDesc() {

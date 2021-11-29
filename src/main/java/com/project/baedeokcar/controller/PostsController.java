@@ -63,7 +63,6 @@ public class PostsController {
 
     }
 
-
     @PostMapping("/posts")
     public String save(@ModelAttribute PostsSaveRequestDto requestDto) {
         log.info("post-save controller");
