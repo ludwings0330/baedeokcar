@@ -20,7 +20,6 @@ class MemberRepositoryTest {
         //given
         Member member = Member.builder()
                 .loginId("ludwings")
-                .nickname("nickname")
                 .name("name")
                 .password("password")
                 .build();

@@ -10,9 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Getter
 @Entity
 public class Member extends BaseTimeEntity{
@@ -23,6 +21,12 @@ public class Member extends BaseTimeEntity{
 
     private String loginId;
     private String name;
-    private String nickname;
     private String password;
+
+    @Builder
+    public Member(String loginId, String name, String password) {
+        this.loginId = loginId;
+        this.name = name;
+        this.password = password;
+    }
 }
