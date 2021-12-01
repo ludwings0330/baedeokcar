@@ -60,27 +60,6 @@ public class IndexController {
         return "posts/posts-save";
     }
 
-    @PostConstruct
-    public void init() {
-        for (int i = 0; i < 1000; i++) {
-            String title = "test title" + i;
-            String content = "test content" + i;
-            String writer = "test writer";
-            String pwd = "password";
-
-            PostsSaveRequestDto postsSaveRequestDto = PostsSaveRequestDto.builder()
-                    .title(title)
-                    .content(content)
-                    .writer(writer)
-                    .pwd(pwd)
-                    .build();
-
-            postsService.save(postsSaveRequestDto);
-        }
-
-        log.info("[init] Test 용 데이터 추가");
-    }
-
     @PerfLogging
     @GetMapping("login")
     public String loginForm() {
