@@ -1,9 +1,11 @@
 package com.project.baedeokcar.service;
 
 import com.project.baedeokcar.domain.Member;
+import com.project.baedeokcar.domain.dto.MemberDto;
 import com.project.baedeokcar.domain.dto.MemberJoinDto;
 import com.project.baedeokcar.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.patterns.IVerificationRequired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +54,24 @@ public class MemberServiceImpl implements MemberService {
                 .collect(Collectors.toList());
 
         return collect;
+    }
+
+    @Override
+    public MemberDto login(MemberJoinDto member) {
+        Member findMember = memberRepository.findByLoginId(member.getLoginId()).get();
+        if (findMember != null) {
+            if (verificationMember(member, findMember)) {
+                return new MemberDto(findMember);
+            }
+        }
+        return null;
+    }
+
+    private boolean verificationMember(MemberJoinDto requestMember, Member findMember) {
+        boolean ret = true;
+        if (!requestMember.getPassword().equals(findMember.getPassword()))
+            ret = false;
+
+        return ret;
     }
 }
