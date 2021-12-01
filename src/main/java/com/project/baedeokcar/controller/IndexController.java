@@ -80,4 +80,35 @@ public class IndexController {
 
         log.info("[init] Test 용 데이터 추가");
     }
+
+    @PerfLogging
+    @GetMapping("login")
+    public String loginForm() {
+        return "login";
+    }
+
+    @PerfLogging
+    @GetMapping("join")
+    public String joinForm() {
+        return "join";
+    }
+
+    @PerfLogging
+    @GetMapping("car")
+    public String carForm() {
+        return "car";
+    }
+
+    @PerfLogging
+    @GetMapping("car-list")
+    public String carListForm() {
+        return "car-list";
+    }
+
+    @PerfLogging
+    @GetMapping("reservation")
+    public String reservationForm() {
+        return "reservation";
+    }
+
 }
