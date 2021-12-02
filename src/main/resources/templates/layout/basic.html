@@ -80,7 +80,7 @@
                     <li>
                         <hr class="dropdown-divider"/>
                     </li>
-                    <li><a class="dropdown-item" href="#!">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
                 </ul>
             </li>
         </ul>
@@ -170,6 +170,18 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
                             예약 확인
                         </a>
+                        <div class="nav-link">
+
+                            <div th:if="${session.authInfo != null}">
+                                <div th:text="|${session.authInfo.loginId}님 안녕하세요.|"></div>
+                            </div>
+
+                            <div th:unless="${session.authInfo != null}">
+                                <div>Guest님 안녕하세요.</div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </nav>

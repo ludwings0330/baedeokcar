@@ -9,8 +9,11 @@ import com.project.baedeokcar.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -33,11 +36,21 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute MemberJoinDto member) {
+    public String login(@ModelAttribute MemberJoinDto member, HttpSession session) {
         MemberDto loginMember = memberService.login(member);
+        session.setAttribute("authInfo", loginMember);
+        session.setMaxInactiveInterval(60 * 10);
+
         if (loginMember == null) {
             throw new IllegalStateException("아이디 / 비밀번호가 일치하지 않습니다.");
         }
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
 
         return "redirect:/";
     }
