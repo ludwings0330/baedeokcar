@@ -1,6 +1,7 @@
 package com.project.baedeokcar.domain;
 
 import com.project.baedeokcar.domain.dto.MemberJoinDto;
+import com.project.baedeokcar.repository.CouponRepository;
 import com.project.baedeokcar.repository.MemberRepository;
 import com.project.baedeokcar.service.MemberService;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,8 @@ class CouponTest {
 
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private CouponRepository couponRepository;
 
     @Autowired
     private EntityManager em;
@@ -59,6 +62,12 @@ class CouponTest {
         } else {
             throw new IllegalStateException("멤버찾기 실패");
         }
-        
+
+
+        List<Coupon> all = couponRepository.findAll();
+        for (Coupon c :
+                all) {
+            System.out.println("c.toString() = " + c.toString());
+        }
     }
 }

@@ -10,7 +10,17 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Coupon extends BaseTimeEntity {
+
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "id=" + id +
+                ", owner=" + owner.getName() +
+                ", state=" + state +
+                '}';
+    }
 
     @Id @GeneratedValue
     @Column(name = "coupon_id")
