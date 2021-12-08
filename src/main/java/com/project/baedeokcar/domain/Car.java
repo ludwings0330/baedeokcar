@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,10 +19,49 @@ public class Car extends BaseTimeEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private CarState state;
-/*
+    private CarState state = CarState.NOT_IN_USE;
+
+    // 회원은 여러대의 차량을 소유한다, 차량은 한명의 소유자를 가진다.
+    // 차량에 소유주 번호가 있다. -> 연관관계의 주인 = 차량
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member owner;
-    private Reservation reservInfo;
-    */
+
+    // 차량은 여러 예약정보를 가지고 있다.
+    // 예약에서 한대의 차량을 가지고 있다.
+    @OneToMany(mappedBy = "car")
+    private List<Reservation> reservationList = new ArrayList<>();
+
     private int price;
+
+    //==relation method==//
+    public void setOwner(Member member) {
+        owner = member;
+        member.carRegistration(this);
+    }
+
+
+    public void addReservation(Reservation reservation) {
+        reservationList.add(reservation);
+    }
+    //==end of relation method==//
+
+    //==business logic==//
+    public int changePricePerHour(int price) {
+        this.price = price;
+        return this.getPrice();
+    }
+
+    public int getPricePerHour() {
+        return price;
+    }
+
+    public void useCar() {
+        this.state = CarState.IN_USE;
+    }
+
+    public void returnCar() {
+        this.state = CarState.NOT_IN_USE;
+    }
+    //==end of business logic==//
 }

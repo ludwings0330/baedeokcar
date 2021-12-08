@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Entity
 @AllArgsConstructor
-public class Member extends BaseTimeEntity{
+public class    Member extends BaseTimeEntity{
 
     @Id @GeneratedValue
     @Column(name = "member_id")
@@ -23,19 +23,11 @@ public class Member extends BaseTimeEntity{
     private String name;
     private String password;
 
-    /*
-    // cars that member is owner
-    private List<Car> carList;
+    @OneToMany(mappedBy = "owner")
+    private List<Car> carList = new ArrayList<>();
 
-
-    // reservation list
-    private List<Reservation> reservationList;
-
-    // history of using
-    private List<History> historyList;
-    */
-
-    // coupons that member has
+    @OneToMany(mappedBy = "member")
+    private List<Reservation> reservationList = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner")
     private List<Coupon> couponList = new ArrayList<>();
@@ -47,7 +39,27 @@ public class Member extends BaseTimeEntity{
         this.password = password;
     }
 
+    //==relation method==//
     public void addCoupon(Coupon coupon) {
         couponList.add(coupon);
     }
+
+    public void carRegistration(Car car) {
+        carList.add(car);
+    }
+
+    public void addReservation(Reservation reservation) {
+        this.reservationList.add(reservation);
+    }
+    //==end of relation method==//
+
+    //==business logic==//
+    public void changeInfo(Member member) {
+        this.loginId = member.getLoginId();
+        this.name = member.getName();
+        this.password = member.getPassword();
+    }
+
+    //==end of business logic==//
+
 }
