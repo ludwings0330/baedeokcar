@@ -1,6 +1,7 @@
 package com.project.baedeokcar.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Car extends BaseTimeEntity {
@@ -23,7 +25,7 @@ public class Car extends BaseTimeEntity {
 
     // 회원은 여러대의 차량을 소유한다, 차량은 한명의 소유자를 가진다.
     // 차량에 소유주 번호가 있다. -> 연관관계의 주인 = 차량
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member owner;
 

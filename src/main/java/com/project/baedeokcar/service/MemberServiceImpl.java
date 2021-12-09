@@ -21,7 +21,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public Long save(MemberJoinDto member) {
+    public Long
+    save(MemberJoinDto member) {
         memberRepository.save(member.toEntity());
         return null;
     }
