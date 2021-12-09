@@ -61,31 +61,31 @@ public class IndexController {
     }
 
     @PerfLogging
-    @GetMapping("login")
+    @GetMapping("/login")
     public String loginForm() {
         return "login";
     }
 
     @PerfLogging
-    @GetMapping("join")
+    @GetMapping("/join")
     public String joinForm() {
         return "join";
     }
 
     @PerfLogging
-    @GetMapping("car")
+    @GetMapping("/car")
     public String carForm() {
         return "car";
     }
 
     @PerfLogging
-    @GetMapping("car-list")
+    @GetMapping("/car-list")
     public String carListForm() {
         return "car-list";
     }
 
     @PerfLogging
-    @GetMapping("reservation")
+    @GetMapping("/reservation")
     public String reservationForm() {
         return "reservation";
     }

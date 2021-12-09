@@ -27,9 +27,6 @@ public class PostsServiceImpl implements PostsService {
     private final PostsRepository postsRepository;
     private final ModelMapper modelMapper;
 
-
-    private static final int PAGE_POST_COUNT = 15; // 한페이지에 존재하는 게시글 수
-
     // 게시글 조회
     @Override
     public PostsDTO read(Long id) {

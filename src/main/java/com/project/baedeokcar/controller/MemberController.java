@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
     private final MemberService memberService;
 
-    @PostMapping("/join")
+    @PostMapping("/members")
     @PerfLogging
     public String join(@ModelAttribute MemberJoinDto member) {
         MemberJoinDto findMember = memberService.findByLoginId(member.getLoginId());

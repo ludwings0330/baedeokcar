@@ -29,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberJoinDto findByLoginId(String loginId) {
         Optional<Member> findMember = memberRepository.findByLoginId(loginId);
+
         if (findMember.isPresent()) {
             return new MemberJoinDto(findMember.get());
         } else {
