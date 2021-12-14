@@ -1,10 +1,8 @@
 package com.project.baedeokcar.controller;
 
 import com.project.baedeokcar.aop.PerfLogging;
-import com.project.baedeokcar.domain.Member;
-import com.project.baedeokcar.domain.dto.MemberDto;
-import com.project.baedeokcar.domain.dto.MemberJoinDto;
-import com.project.baedeokcar.repository.MemberRepository;
+import com.project.baedeokcar.domain.dto.member.MemberDto;
+import com.project.baedeokcar.domain.dto.member.MemberJoinDto;
 import com.project.baedeokcar.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,6 +46,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    // 로그아웃
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

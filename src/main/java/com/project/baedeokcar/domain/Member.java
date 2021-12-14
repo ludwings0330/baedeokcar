@@ -1,5 +1,6 @@
 package com.project.baedeokcar.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,8 +20,12 @@ public class    Member extends BaseTimeEntity{
     @Column(name = "member_id")
     private Long id;
 
+    @NotNull
+    @Column(unique = true)
     private String loginId;
+    @NotNull
     private String name;
+    @NotNull
     private String password;
 
     @OneToMany(mappedBy = "owner")

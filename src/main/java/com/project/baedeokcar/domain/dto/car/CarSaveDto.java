@@ -1,4 +1,4 @@
-package com.project.baedeokcar.domain.dto;
+package com.project.baedeokcar.domain.dto.car;
 
 import com.project.baedeokcar.domain.Car;
 import com.project.baedeokcar.domain.Member;

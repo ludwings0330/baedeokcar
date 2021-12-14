@@ -1,14 +1,11 @@
 package com.project.baedeokcar.controller;
 
 import com.project.baedeokcar.aop.PerfLogging;
-import com.project.baedeokcar.domain.dto.PostsDTO;
-import com.project.baedeokcar.domain.dto.PostsResponseDto;
+import com.project.baedeokcar.domain.dto.post.PostsResponseDto;
 import com.project.baedeokcar.service.PostsService;
-import com.project.baedeokcar.domain.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -16,9 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.annotation.PostConstruct;
 
 @Controller
 @RequiredArgsConstructor
@@ -75,13 +69,7 @@ public class IndexController {
     @PerfLogging
     @GetMapping("car")
     public String carForm() {
-        return "car";
-    }
-
-    @PerfLogging
-    @GetMapping("car-list")
-    public String carListForm() {
-        return "car-list";
+        return "car/car";
     }
 
     @PerfLogging

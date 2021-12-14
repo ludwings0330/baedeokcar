@@ -1,9 +1,9 @@
 package com.project.baedeokcar.service;
 
 import com.project.baedeokcar.aop.PerfLogging;
-import com.project.baedeokcar.domain.dto.PostsDTO;
-import com.project.baedeokcar.domain.dto.PostsResponseDto;
-import com.project.baedeokcar.domain.dto.PostsSaveRequestDto;
+import com.project.baedeokcar.domain.dto.post.PostsDTO;
+import com.project.baedeokcar.domain.dto.post.PostsResponseDto;
+import com.project.baedeokcar.domain.dto.post.PostsSaveRequestDto;
 import com.project.baedeokcar.domain.posts.Posts;
 import com.project.baedeokcar.repository.PostsRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Log4j2

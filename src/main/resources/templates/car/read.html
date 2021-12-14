@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="col-lg-12">
+            <h1 class="page-header">차량 등록</h1>
+        </div>
+            <div class="card mb-4" style="margin-top: 30px;">
+                <div class="card-body">
+                    <img class="card-img-top" th:width="300px" th:height="400px" th:src="@{/cars/} + ${car.getSavedFileName()}" th:alt="${car.getOriginFileName()}" style="max-height: 400px; max-width: 400px; display: block; margin: 0px auto">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="loginId" name="loginId" th:value="${session.authInfo.loginId}" readonly/>
+                        <label for="loginId" class="label-head">owner</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="driveDistance" name="driveDistance" th:value="${car.getDriveDistance()}" readonly/>
+                        <label for="driveDistance" class="label-head">drive Distance</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="year" name="year" th:value="${car.getYear()}" readonly/>
+                        <label for="year" class="label-head">year</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="info" name="info" th:value="${car.getInfo()}" readonly/>
+                        <label for="info" class="label-head">info</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="price" name="price" th:value="${car.getPrice()}" readonly/>
+                        <label for="price" class="label-head">price</label>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+    </th:block>
+</th:block>
+
+</body>
+</html>

@@ -3,7 +3,7 @@ package com.project.baedeokcar.service;
 import com.project.baedeokcar.domain.Car;
 import com.project.baedeokcar.domain.CarState;
 import com.project.baedeokcar.domain.Member;
-import com.project.baedeokcar.domain.dto.MemberJoinDto;
+import com.project.baedeokcar.domain.dto.member.MemberJoinDto;
 import com.project.baedeokcar.repository.CarRepository;
 import com.project.baedeokcar.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Commit
 @SpringBootTest
@@ -60,7 +58,6 @@ class CarServiceImplTest {
 
 
        //when
-        carService.modifyCar(car.getId(), 20000);
 
         //then
 

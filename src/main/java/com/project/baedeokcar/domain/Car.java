@@ -1,5 +1,6 @@
 package com.project.baedeokcar.domain;
 
+import com.project.baedeokcar.domain.dto.car.CarModReqDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +21,13 @@ public class Car extends BaseTimeEntity {
     @Column(name = "car_id")
     private Long id;
 
+    private int driveDistance;   // 주행거리
+    private String year; // 년식
+
+    private String info;
+
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private CarState state = CarState.NOT_IN_USE;
 
     // 회원은 여러대의 차량을 소유한다, 차량은 한명의 소유자를 가진다.
@@ -35,6 +42,10 @@ public class Car extends BaseTimeEntity {
     private List<Reservation> reservationList = new ArrayList<>();
 
     private int price;
+
+    private String originFileName;
+    private String savedFileName;
+
 
     //==relation method==//
     public void setOwner(Member member) {
@@ -54,6 +65,10 @@ public class Car extends BaseTimeEntity {
         return this.getPrice();
     }
 
+    public void changeCarInfo(CarModReqDto car) {
+        this.price = car.getPrice();
+        this.info = car.getInfo();
+    }
     public int getPricePerHour() {
         return price;
     }

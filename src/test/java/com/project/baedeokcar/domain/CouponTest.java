@@ -1,9 +1,7 @@
 package com.project.baedeokcar.domain;
 
-import com.project.baedeokcar.domain.dto.MemberJoinDto;
 import com.project.baedeokcar.repository.CouponRepository;
 import com.project.baedeokcar.repository.MemberRepository;
-import com.project.baedeokcar.service.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,11 +9,8 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @Commit

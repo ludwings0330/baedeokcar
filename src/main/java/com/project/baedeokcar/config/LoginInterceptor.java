@@ -1,6 +1,6 @@
 package com.project.baedeokcar.config;
 
-import com.project.baedeokcar.domain.dto.MemberDto;
+import com.project.baedeokcar.domain.dto.member.MemberDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
