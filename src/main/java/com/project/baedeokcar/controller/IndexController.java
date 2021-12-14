@@ -1,10 +1,10 @@
 package com.project.baedeokcar.controller;
 
 import com.project.baedeokcar.aop.PerfLogging;
-import com.project.baedeokcar.domain.dto.PostsDTO;
-import com.project.baedeokcar.domain.dto.PostsResponseDto;
+import com.project.baedeokcar.domain.dto.post.PostsDTO;
+import com.project.baedeokcar.domain.dto.post.PostsResponseDto;
 import com.project.baedeokcar.service.PostsService;
-import com.project.baedeokcar.domain.dto.PostsSaveRequestDto;
+import com.project.baedeokcar.domain.dto.post.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -75,19 +75,19 @@ public class IndexController {
     @PerfLogging
     @GetMapping("/car")
     public String carForm() {
-        return "car";
+        return "/car/car";
     }
 
     @PerfLogging
     @GetMapping("/car-list")
     public String carListForm() {
-        return "car-list";
+        return "/car/car-list";
     }
 
     @PerfLogging
     @GetMapping("/reservation")
     public String reservationForm() {
-        return "reservation";
+        return "/reservation/reservation";
     }
 
 }
