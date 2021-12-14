@@ -1,11 +1,12 @@
 package com.project.baedeokcar.service;
 
 import com.project.baedeokcar.domain.Member;
-import com.project.baedeokcar.domain.dto.MemberDto;
-import com.project.baedeokcar.domain.dto.MemberJoinDto;
+import com.project.baedeokcar.domain.dto.member.MemberDto;
+import com.project.baedeokcar.domain.dto.member.MemberJoinDto;
+import com.project.baedeokcar.domain.dto.member.MemberReqDto;
+import com.project.baedeokcar.domain.dto.member.MemberResDto;
 import com.project.baedeokcar.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.patterns.IVerificationRequired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public Long save(MemberJoinDto member) {
+    public Long
+    save(MemberJoinDto member) {
         memberRepository.save(member.toEntity());
         return null;
     }
@@ -48,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberJoinDto> findAll() {
+    public List<MemberJoinDto> getMembers() {
         List<Member> all = memberRepository.findAll();
         List<MemberJoinDto> collect = all.stream()
                 .map((m) -> new MemberJoinDto(m))
@@ -66,6 +68,25 @@ public class MemberServiceImpl implements MemberService {
             }
         }
         return null;
+    }
+
+    // 회원 탈퇴
+    @Override
+    public boolean quit(MemberReqDto member) {
+        Optional<Member> findMember = memberRepository.findByLoginId(member.getLoginId());
+        memberRepository.delete(findMember.get());
+
+        return true;
+    }
+
+    //회원 정보 수정
+    @Override
+    @Transactional
+    public MemberResDto modifyMemberInfo(MemberReqDto member) {
+        Optional<Member> findMember = memberRepository.findByLoginId(member.getLoginId());
+        findMember.get().changeInfo(member.toEntity());
+
+        return new MemberResDto(findMember.get());
     }
 
     private boolean verificationMember(MemberJoinDto requestMember, Member findMember) {

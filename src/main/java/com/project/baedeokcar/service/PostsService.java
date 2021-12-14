@@ -1,12 +1,10 @@
 package com.project.baedeokcar.service;
 
-import com.project.baedeokcar.domain.dto.PostsDTO;
-import com.project.baedeokcar.domain.dto.PostsResponseDto;
-import com.project.baedeokcar.domain.dto.PostsSaveRequestDto;
+import com.project.baedeokcar.domain.dto.post.PostsDTO;
+import com.project.baedeokcar.domain.dto.post.PostsResponseDto;
+import com.project.baedeokcar.domain.dto.post.PostsSaveRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public interface PostsService {
 

@@ -1,7 +1,6 @@
 package com.project.baedeokcar.domain.posts;
 
 import com.project.baedeokcar.domain.BaseTimeEntity;
-import com.project.baedeokcar.domain.dto.PostsDTO;
 import lombok.*;
 
 import javax.persistence.*;

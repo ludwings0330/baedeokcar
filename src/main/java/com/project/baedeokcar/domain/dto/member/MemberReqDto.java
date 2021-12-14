@@ -1,4 +1,4 @@
-package com.project.baedeokcar.domain.dto;
+package com.project.baedeokcar.domain.dto.member;
 
 import com.project.baedeokcar.domain.Member;
 import lombok.Data;
@@ -6,17 +6,20 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class
-MemberJoinDto {
+public class MemberReqDto {
     private String loginId;
     private String name;
     private String password;
 
     public Member toEntity() {
-        return new Member(loginId, name, password);
+        return Member.builder()
+                .loginId(loginId)
+                .name(name)
+                .password(password)
+                .build();
     }
 
-    public MemberJoinDto(Member entity) {
+    public MemberReqDto(Member entity) {
         this.loginId = entity.getLoginId();
         this.name = entity.getName();
         this.password = entity.getPassword();

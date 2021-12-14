@@ -3,8 +3,8 @@ spring:
     hibernate:
     # application 실행시 모든 테이블 drop 후, create
     # 개발 단계에서만 적용
-      ddl-auto: update
-
+#      ddl-auto: update
+#      ddl-auto: create
 
     properties:
       hibernate:
@@ -26,6 +26,10 @@ spring:
   # 프로젝트 변경 후에 만들어진 결과를 보관(캐싱)하지 않도록 설정
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 logging.level:
   org.hibernate.SQL: debug
