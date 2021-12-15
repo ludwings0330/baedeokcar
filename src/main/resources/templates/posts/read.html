@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <a th:href="@{/posts/modify(id = ${postsDTO.id})}">
+        <a th:if="${session.authInfo.getLoginId() == postsDTO.writer}" th:href="@{/posts/modify(id = ${postsDTO.id})}">
             <button class="btn btn-primary modifyBtn" type="button">수정</button>
         </a>
         <a th:href="@{/posts}">

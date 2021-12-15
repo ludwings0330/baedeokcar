@@ -16,13 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.PostConstruct;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class IndexController {
 
     private final PostsService postsService;
@@ -55,39 +52,28 @@ public class IndexController {
 
 
     @GetMapping("/posts/save")
-    @PerfLogging
     public String saveForm() {
         return "posts/posts-save";
     }
 
-    @PerfLogging
     @GetMapping("/login")
     public String loginForm() {
         return "login";
     }
 
-    @PerfLogging
     @GetMapping("/join")
     public String joinForm() {
         return "join";
     }
 
-    @PerfLogging
     @GetMapping("/car")
     public String carForm() {
         return "/car/car";
     }
 
-    @PerfLogging
-    @GetMapping("/car-list")
-    public String carListForm() {
-        return "/car/car-list";
-    }
-
-    @PerfLogging
-    @GetMapping("/reservation")
+    @GetMapping("/reservations")
     public String reservationForm() {
-        return "/reservation/reservation";
+        return "/reservation/reservations";
     }
 
 }

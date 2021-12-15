@@ -1,8 +1,8 @@
 package com.project.baedeokcar.controller;
 
 import com.project.baedeokcar.aop.PerfLogging;
-import com.project.baedeokcar.domain.dto.car.CarDto;
-import com.project.baedeokcar.domain.dto.car.CarListDto;
+import com.project.baedeokcar.domain.dto.car.CarReadResDto;
+import com.project.baedeokcar.domain.dto.car.CarListResDto;
 import com.project.baedeokcar.domain.dto.car.CarModReqDto;
 import com.project.baedeokcar.domain.dto.car.CarSaveReqDto;
 import com.project.baedeokcar.domain.dto.member.MemberDto;
@@ -36,7 +36,7 @@ public class CarController {
 
     @GetMapping("/read-car/{carId}")
     public String carDetails(@PathVariable Long carId, Model model) {
-        CarDto findCarDto = carService.findOneById(carId);
+        CarReadResDto findCarDto = carService.findOneById(carId);
         model.addAttribute("car", findCarDto);
 
         return "car/read";
@@ -44,9 +44,10 @@ public class CarController {
 
     // 차량 등록 취소
     // 자동차 Id를 알고 있어야지?
+    @GetMapping("/reserve-car")
     public String deleteCar() {
 
-        return "/";
+        return "/car/reserve";
     }
 
 
@@ -69,7 +70,7 @@ public class CarController {
     // 전체 차량 목록
     @GetMapping("/car-list")
     public String carList(Model model) {
-        List<CarListDto> allCars = carService.getAllCars();
+        List<CarListResDto> allCars = carService.getAllCars();
 
         model.addAttribute("allCars", allCars);
 
@@ -81,7 +82,7 @@ public class CarController {
     public String ownCarList(HttpSession session, Model model) {
         MemberDto authInfo = (MemberDto) session.getAttribute("authInfo");
         String loginId = authInfo.getLoginId();
-        List<CarListDto> ownCars = carService.getOwnCars(loginId);
+        List<CarListResDto> ownCars = carService.getOwnCars(loginId);
         model.addAttribute("allCars", ownCars);
         return "car/own-car-list";
     }

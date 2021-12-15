@@ -67,21 +67,21 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<CarListDto> getAllCars() {
+    public List<CarListResDto> getAllCars() {
         List<Car> all = carRepository.findAll();
 
-        List<CarListDto> collect = all.stream()
-                .map(c -> new CarListDto(c))
+        List<CarListResDto> collect = all.stream()
+                .map(c -> new CarListResDto(c))
                 .collect(Collectors.toList());
         return collect;
     }
 
     // 회원이 등록한 자동차 List만 가져오기 -> 동적 쿼리 -> QueryDsl
     @Override
-    public List<CarListDto> getOwnCars(String loginId) {
+    public List<CarListResDto> getOwnCars(String loginId) {
         List<Car> ownCar = carRepository.findOwnCar(loginId);
-        List<CarListDto> collect = ownCar.stream()
-                .map(c -> new CarListDto(c))
+        List<CarListResDto> collect = ownCar.stream()
+                .map(c -> new CarListResDto(c))
                 .collect(Collectors.toList());
 
         return collect;
@@ -89,8 +89,8 @@ public class CarServiceImpl implements CarService {
 
 
     @Override
-    public CarDto findOneById(Long carId) {
+    public CarReadResDto findOneById(Long carId) {
         Car findCar = carRepository.findCarById(carId);
-        return new CarDto(findCar);
+        return new CarReadResDto(findCar);
     }
 }

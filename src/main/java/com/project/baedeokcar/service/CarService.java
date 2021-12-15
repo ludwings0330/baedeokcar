@@ -18,10 +18,10 @@ public interface CarService {
     void modifyCar(CarModReqDto car);
 
     //전체 차량 목록
-    List<CarListDto> getAllCars();
+    List<CarListResDto> getAllCars();
 
     //회원이 소유중인 차량 목록
-    List<CarListDto> getOwnCars(String loginId);
+    List<CarListResDto> getOwnCars(String loginId);
 
-    CarDto findOneById(Long carId);
+    CarReadResDto findOneById(Long carId);
 }

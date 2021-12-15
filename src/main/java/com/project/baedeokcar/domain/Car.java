@@ -42,7 +42,7 @@ public class Car extends BaseTimeEntity {
     private List<Reservation> reservationList = new ArrayList<>();
 
     private int price;
-
+    private String carModel;
     private String originFileName;
     private String savedFileName;
 

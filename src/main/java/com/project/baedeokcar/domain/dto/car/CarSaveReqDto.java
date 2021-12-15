@@ -13,6 +13,7 @@ public class CarSaveReqDto {
     private String loginId;
     private String info;
     private String year;
+    private String carModel;
     private int driveDistance;
     private int price;
     private MultipartFile file;
@@ -29,15 +30,8 @@ public class CarSaveReqDto {
                 .driveDistance(driveDistance)
                 .originFileName(file.getOriginalFilename())
                 .savedFileName(now.toString() + ext )
+                .carModel(carModel)
                 .year(year)
                 .build();
-    }
-
-    public CarSaveReqDto(Car entity) {
-        this.loginId = entity.getOwner().getLoginId();
-        this.year = entity.getYear();
-        this.driveDistance = entity.getDriveDistance();
-        this.info = entity.getInfo();
-        this.price = entity.getPrice();
     }
 }

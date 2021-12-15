@@ -4,6 +4,7 @@ import com.project.baedeokcar.domain.Car;
 import com.project.baedeokcar.domain.CarState;
 import com.project.baedeokcar.domain.Member;
 import com.project.baedeokcar.domain.Reservation;
+import com.sun.xml.bind.v2.model.core.WildcardMode;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,24 +17,27 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class CarListDto {
+public class CarReadResDto {
     private Long id;
-    private String owner;
+    private String loginId;
+    private int driveDistance;   // 주행거리
+    private String carModel;
+    private String year; // 년식
     private String info;
     private int price;
+    private String originFileName;
+    private String savedFileName;
 
-    public Car toEntity() {
-        return Car.builder()
-                .id(id)
-                .price(price)
-                .info(info)
-                .build();
-    }
 
-    public CarListDto(Car entity) {
+    public CarReadResDto(Car entity) {
         this.id = entity.getId();
-        this.owner = entity.getOwner().getLoginId();
+        this.carModel = entity.getCarModel();
+        this.loginId = entity.getOwner().getLoginId();
+        this.driveDistance = entity.getDriveDistance();
+        this.year = entity.getYear();
         this.info = entity.getInfo();
         this.price = entity.getPrice();
+        this.originFileName = entity.getOriginFileName();
+        this.savedFileName = entity.getSavedFileName();
     }
 }

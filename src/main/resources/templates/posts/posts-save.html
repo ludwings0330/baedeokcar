@@ -22,13 +22,15 @@
 
                             <div class="form-group my-3">
                                 <label for="writer">writer</label>
-                                <input type="text" id="writer" name="writer" class="form-control" placeholder="input writer name" required>
+                                <input type="text" id="writer" name="writer" class="form-control" th:value="${session.authInfo.getLoginId()}" readonly>
                             </div>
 
-                            <div class="form-group my-3">
-                                <label for="pwd">password</label>
-                                <input type="text" id="pwd" name="pwd" class="form-control" placeholder="input content password" required>
-                            </div>
+<!--                            비밀번호는 필요 없음. 본인 거면 수정 버튼이 나오도록.-->
+<!--                            <div class="form-group my-3">-->
+<!--                                <label for="pwd">password</label>-->
+<!--                                <input type="text" id="pwd" name="pwd" class="form-control" placeholder="input content password" required>-->
+<!--                            </div>-->
+
 
                             <div class="form-group my-3">
                                 <label for="content">content</label>

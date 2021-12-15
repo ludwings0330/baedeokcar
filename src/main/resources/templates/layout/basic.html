@@ -10,7 +10,7 @@
         <meta name="author" content=""/>
 
         <title>배덕카 게시판</title>
-
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
         <link th:href="@{/sb_admin/css/styles.css}" rel="stylesheet"/>
 
@@ -70,6 +70,7 @@
         <!-- Navbar Search-->
         <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         </div>
+
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
@@ -80,10 +81,23 @@
                     <li>
                         <hr class="dropdown-divider"/>
                     </li>
-                    <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="/logout">컨텐츠1</a></li>
+                    <li>
+                        <hr class="dropdown-divider"/>
+                    </li>
+                    <li><a class="dropdown-item" href="/logout">컨텐츠2</a></li>
+                    <li>
+                        <hr class="dropdown-divider"/>
+                    </li>
+                    <li><a class="dropdown-item" href="/logout">컨텐츠3</a></li>
+                    <li>
+                        <hr class="dropdown-divider"/>
+                    </li>
+                    <li><a class="dropdown-item" href="/logout">컨텐츠4</a></li>
                 </ul>
             </li>
         </ul>
+
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -95,7 +109,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             홈
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="car-list">
                             <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
                             렌트 예약
                         </a>
@@ -104,7 +118,6 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             후기 게시판
                         </a>
-
                         <!--다중 collapse 필요시 사용-->
                         <!--<div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -162,14 +175,43 @@
 
                         <!--나중에 로그인 유저일때만 출력되도록 수정-->
                         <div class="sb-sidenav-menu-heading">마이페이지</div>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user-edit"></i></div>
-                            개인정보 수정
+
+                        <a th:if="${session.authInfo != null} " class="nav-link" href="/logout">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            로그아웃
                         </a>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
-                            예약 확인
+
+                        <a th:if="${session.authInfo == null} " class="nav-link" href="/login">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>
+                            로그인
                         </a>
+                        <a th:if="${session.authInfo == null} " class="nav-link" href="/join">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
+                            회원가입
+                        </a>
+
+                        <th:block th:if="${session.authInfo != null}">
+
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-edit"></i></div>
+                                개인정보 수정
+                            </a>
+                            <a class="nav-link" href="/reservations">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                                예약 확인
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">차량 관리</div>
+                            <a class="nav-link" href="/car">
+                                <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
+                                차량 등록
+                            </a>
+                            <a class="nav-link" href="/own-car-list">
+                                <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
+                                나의 차량
+                            </a>
+                        </th:block>
+
                         <div class="nav-link">
 
                             <div th:if="${session.authInfo != null}">

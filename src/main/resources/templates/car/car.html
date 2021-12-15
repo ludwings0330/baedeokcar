@@ -12,32 +12,36 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="loginId" name="loginId" th:value="${session.authInfo.loginId}" readonly/>
-                        <label for="loginId" class="label-head">owner</label>
+                        <label for="loginId" class="label-head">소유주</label>
                     </div>
 
                     <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="carModel" name="carModel"/>
+                        <label for="driveDistance" class="label-head">차량 모델</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="driveDistance" name="driveDistance"/>
-                        <label for="driveDistance" class="label-head">drive Distance</label>
+                        <label for="driveDistance" class="label-head">총 주행거리</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="year" name="year"/>
-                        <label for="year" class="label-head">year</label>
+                        <label for="year" class="label-head">연식</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="info" name="info"/>
-                        <label for="info" class="label-head">info</label>
+                        <label for="info" class="label-head">정보</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="price" name="price"/>
-                        <label for="price" class="label-head">price</label>
+                        <label for="price" class="label-head">일일 대여 금액</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="file" class="form-control" id="file" name="file"/>
-                        <label for="file" class="label-head">car image</label>
+                        <label for="file" class="label-head">차량 사진</label>
                     </div>
 
 

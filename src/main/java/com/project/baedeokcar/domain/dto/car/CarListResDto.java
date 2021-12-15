@@ -16,25 +16,28 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class CarDto {
+public class CarListResDto {
     private Long id;
-    private String loginId;
-    private int driveDistance;   // 주행거리
-    private String year; // 년식
+    private String owner;
     private String info;
     private int price;
-    private String originFileName;
-    private String savedFileName;
+    private String carModel;
+    private int driveDistance;
 
+    public Car toEntity() {
+        return Car.builder()
+                .id(id)
+                .price(price)
+                .info(info)
+                .build();
+    }
 
-    public CarDto(Car entity) {
+    public CarListResDto(Car entity) {
         this.id = entity.getId();
-        this.loginId = entity.getOwner().getLoginId();
-        this.driveDistance = entity.getDriveDistance();
-        this.year = entity.getYear();
+        this.owner = entity.getOwner().getLoginId();
         this.info = entity.getInfo();
         this.price = entity.getPrice();
-        this.originFileName = entity.getOriginFileName();
-        this.savedFileName = entity.getSavedFileName();
+        this.driveDistance = entity.getDriveDistance();
+        this.carModel = entity.getCarModel();
     }
 }
