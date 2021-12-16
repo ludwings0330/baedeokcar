@@ -32,7 +32,7 @@ public class Car extends BaseTimeEntity {
 
     // 회원은 여러대의 차량을 소유한다, 차량은 한명의 소유자를 가진다.
     // 차량에 소유주 번호가 있다. -> 연관관계의 주인 = 차량
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member owner;
 
@@ -66,6 +66,9 @@ public class Car extends BaseTimeEntity {
     }
 
     public void changeCarInfo(CarModReqDto car) {
+        this.carModel = car.getCarModel();
+        this.driveDistance = car.getDriveDistance();
+        this.year = car.getYear();
         this.price = car.getPrice();
         this.info = car.getInfo();
     }

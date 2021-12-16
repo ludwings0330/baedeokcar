@@ -14,7 +14,8 @@
                 <label for="loginId">아이디</label>
                 <input type="text" class="form-control" name="loginId" id="loginId" placeholder="input login id" required>
             </div>
-
+            <div class="alert alert-success" id="id-alert-success">사용 가능한 아이디 입니다.</div>
+            <div class="alert alert-danger" id="id-alert-danger">사용 불가능한 아이디 입니다.</div>
             <div class="form-group my-3">
                 <label for="name">이름</label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="input name" required>
@@ -30,8 +31,12 @@
                 <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="confirm password" required>
             </div>
 
+            <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+            <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+
+
             <div class="m-1" >
-                <button class="btn btn-primary " type="submit">등록</button>
+                <button id="btn-save" class="btn btn-primary " type="submit">등록</button>
                 <button class="btn btn-secondary " onclick="location.href='/'">취소</button>
             </div>
         </form>
@@ -39,4 +44,50 @@
     </th:block>
 
 </th:block>
+<script type="text/javascript">
+    $(function () {
+        $('#alert-success').hide();
+        $('#alert-danger').hide();
+        $('#id-alert-success').hide();
+        $('#id-alert-danger').hide();
+
+        $("#loginId").blur(function () {
+            $.ajax({
+                type:"POST",
+                url:"/check-id",
+                data: {"loginId":$('#loginId').val()},
+
+                success: function (data) {
+                    console.log(data)
+
+                    if (data.length == 0) {
+                        $('#btn-save').prop("disabled", false);
+                        $('#id-alert-success').show();
+                        $('#id-alert-danger').hide();
+                    } else {
+                        $('#btn-save').prop("disabled", true);
+                        $('#id-alert-success').hide();
+                        $('#id-alert-danger').show();
+                    }
+                }
+
+            })
+        });
+    });
+
+    $("#confirm-password").on("propertychange change keyup paste input", function () {
+        const pwd = $('#password').val();
+        const checkPwd = $('#confirm-password').val();
+
+        if (pwd != checkPwd) {
+            $('#btn-save').prop("disabled", true);
+            $('#alert-success').hide();
+            $('#alert-danger').show();
+        } else {
+            $('#btn-save').prop("disabled", false);
+            $('#alert-success').show();
+            $('#alert-danger').hide();
+        }
+    });
+</script>
 </html>

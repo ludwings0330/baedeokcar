@@ -55,14 +55,14 @@ public class CarServiceImpl implements CarService {
 
     @Transactional
     @Override
-    public void delete(CarDelReqDto car) {
-        Optional<Car> findCar = carRepository.findById(car.getCarId());
-        carRepository.delete(findCar.get());
+    public void delete(Long carID) {
+        carRepository.deleteById(carID);
     }
 
+    @Transactional
     @Override
     public void modifyCar(CarModReqDto car) {
-        Optional<Car> findCar = carRepository.findById(car.getCarId());
+        Optional<Car> findCar = carRepository.findById(car.getId());
         findCar.get().changeCarInfo(car);
     }
 

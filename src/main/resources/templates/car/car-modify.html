@@ -1,52 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
-
     <th:block th:fragment="content">
-
         <div class="col-lg-12">
-            <h1 class="page-header">게시글 작성</h1>
+            <h1 class="page-header">차량 정보 수정</h1>
         </div>
-
-
         <div class="card mb-4" style="margin-top: 30px;">
             <div class="card-body">
-                <div class="row">
-                    <div class="row">
-                        <form action="/mod-car" method="post">
-                            <div class="form-group my-3">
-                                <label for="title">title</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="input title" required>
-                            </div>
+                <img class="card-img-top" th:width="300px" th:height="400px" th:src="@{/cars/} + ${car.getSavedFileName()}" th:alt="${car.getOriginFileName()}" style="max-height: 400px; max-width: 400px; display: block; margin: 0px auto">
 
-                            <div class="form-group my-3">
-                                <label for="writer">writer</label>
-                                <input type="text" id="writer" name="writer" class="form-control" placeholder="input writer name" required>
-                            </div>
-
-                            <div class="form-group my-3">
-                                <label for="pwd">password</label>
-                                <input type="text" id="pwd" name="pwd" class="form-control" placeholder="input content password" required>
-                            </div>
-
-                            <div class="form-group my-3">
-                                <label for="content">content</label>
-                                <textarea id="content" name="content" class="form-control" rows=20 placeholder="input content" required></textarea>
-                            </div>
-                            <div class="m-1 float-end" >
-                                <button class="btn btn-primary " type="submit">등록</button>
-                                <button class="btn btn-secondary " onclick="location.href='/posts'">취소</button>
-                            </div>
-                        </form>
-                    </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="loginId" name="loginId" th:value="${car.getLoginId()}" readonly/>
+                    <label for="loginId" class="label-head">소유주</label>
                 </div>
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="carModel" name="carModel" th:value="${car.getCarModel()}" readonly/>
+                    <label for="carModel" class="label-head">차량 모델</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="year" name="year" th:value="${car.getYear()}" readonly/>
+                    <label for="year" class="label-head">차량 연식</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="driveDistance" name="driveDistance" th:value="${car.getDriveDistance()}" readonly/>
+                    <label for="driveDistance" class="label-head">총 주행거리</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="info" name="info" th:value="${car.getInfo()}" readonly/>
+                    <label for="info" class="label-head">정보</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="price" name="price" th:value="${car.getPrice()}" readonly/>
+                    <label for="price" class="label-head">일일 대여요금</label>
+                </div>
+
+                <th:block th:if="${session.authInfo.getLoginId() == car.getLoginId()}">
+                    <a href="/mod-car" class="btn btn-secondary"> 수정 </a>
+                    <a href="/del-car" class="btn btn-danger"> 삭제 </a>
+                </th:block>
+
             </div>
         </div>
 
-
     </th:block>
-
 </th:block>
-</html>
 
+</body>
+</html>

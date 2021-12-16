@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Entity
 @AllArgsConstructor
-public class    Member extends BaseTimeEntity{
+public class Member extends BaseTimeEntity{
 
     @Id @GeneratedValue
     @Column(name = "member_id")
@@ -31,7 +31,7 @@ public class    Member extends BaseTimeEntity{
     @OneToMany(mappedBy = "owner")
     private List<Car> carList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", orphanRemoval = true)
     private List<Reservation> reservationList = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner")
@@ -56,6 +56,8 @@ public class    Member extends BaseTimeEntity{
     public void addReservation(Reservation reservation) {
         this.reservationList.add(reservation);
     }
+
+
     //==end of relation method==//
 
     //==business logic==//
@@ -64,6 +66,7 @@ public class    Member extends BaseTimeEntity{
         this.name = member.getName();
         this.password = member.getPassword();
     }
+
 
     //==end of business logic==//
 

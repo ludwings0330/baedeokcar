@@ -12,7 +12,7 @@ public interface CarService {
     CarSaveResDto save(CarSaveReqDto car) throws Exception;
 
     //차량 등록 취소
-    void delete(CarDelReqDto car);
+    void delete(Long carID);
 
     //차량 정보 수정
     void modifyCar(CarModReqDto car);

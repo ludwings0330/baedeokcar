@@ -10,10 +10,7 @@ import com.project.baedeokcar.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,43 +25,42 @@ public class CarController {
     @PostMapping("/save-car")
     @PerfLogging
     public String save(@ModelAttribute CarSaveReqDto request) throws Exception {
-        System.out.println("request.toString() = " + request.toString());
         carService.save(request);
 
         return "redirect:/";
     }
+
 
     @GetMapping("/read-car/{carId}")
     public String carDetails(@PathVariable Long carId, Model model) {
         CarReadResDto findCarDto = carService.findOneById(carId);
         model.addAttribute("car", findCarDto);
 
-        return "car/read";
+        return "/car/read";
     }
 
-    // 차량 등록 취소
     // 자동차 Id를 알고 있어야지?
-    @GetMapping("/reserve-car")
-    public String deleteCar() {
+    @GetMapping("/del-car/{carId}")
+    public String deleteCar(@PathVariable Long carId) {
+        carService.delete(carId);
 
-        return "/car/reserve";
+        return "forward:/own-car-list";
     }
 
-
-
-    // 차량 정보 수정
+    // 차량 정보 수정 폼
     @GetMapping("/mod-car")
     @PerfLogging
-    public String modifyCarForm() {
-        return "car-modify";
+    public String modifyCarForm(@ModelAttribute CarModReqDto request) throws Exception {
+        return "/car/car-modify";
     }
 
+    // 차량 정보 수정
     @PostMapping("/mod-car")
     @PerfLogging
     public String modifyCarInfo(@ModelAttribute CarModReqDto request, HttpServletRequest rq) {
         carService.modifyCar(request);
 
-        return "redirect:car/own-car-list";
+        return "redirect:/own-car-list";
     }
 
     // 전체 차량 목록
@@ -74,7 +70,7 @@ public class CarController {
 
         model.addAttribute("allCars", allCars);
 
-        return "car/car-list";
+        return "/car/car-list";
     }
 
     // 회원이 소유중인 차량 목록
@@ -84,6 +80,6 @@ public class CarController {
         String loginId = authInfo.getLoginId();
         List<CarListResDto> ownCars = carService.getOwnCars(loginId);
         model.addAttribute("allCars", ownCars);
-        return "car/own-car-list";
+        return "/car/own-car-list";
     }
 }
