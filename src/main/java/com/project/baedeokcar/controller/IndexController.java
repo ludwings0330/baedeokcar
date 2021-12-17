@@ -71,9 +71,5 @@ public class IndexController {
         return "/car/car";
     }
 
-    @GetMapping("/reservations")
-    public String reservationForm() {
-        return "/reservation/reservations";
-    }
 
 }

@@ -48,12 +48,13 @@
                             <a id="btn-mod" onclick="modInfo()" class="btn btn-secondary"> 수정 </a>
                             <button id="btn-save" class="btn btn-primary" type="submit" style="display: none">저장</button>
                             <a th:href="|/del-car/${car.getId()}|" class="btn btn-danger"> 삭제 </a>
+                            <a th:href="@{/reservations/(id=${car.getId()})}" class="btn btn-primary"> 예약 내역 확인 </a>
                         </th:block>
                     </form>
 
                     <th:block th:if="${session.authInfo.getLoginId() != car.getLoginId()}">
 <!--                        사실 이 부분은 캘린더를 띄워서 바로 일자를 선택하도록 구현-->
-                        <a href="/reserve-car" class="btn btn-primary"> 예약 </a>
+                        <a th:href="@{/reservations(id=${car.getId()})}" class="btn btn-primary"> 예약 </a>
                     </th:block>
 
                 </div>

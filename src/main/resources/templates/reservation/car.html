@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">예약 확인</h1>
+        </div>
+        <div id='calendar'></div>
+    </th:block>
+
+</th:block>
+
+<script th:inline="javascript">
+    let name = [[${session.authInfo.getLoginId()}]];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            height:650,
+            selectable: true,
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth'
+            },
+
+            select: function(info) {
+                if (confirm(name + "님 " + info.startStr + ' 부터 ' + info.endStr + ' 까지 예약하시겠습니까?')) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "/save-reservation",
+                        data: {
+                            'loginId': name,
+                            'carId': 2,
+                            'start': info.startStr,
+                            'end': info.endStr
+                        },
+
+                        success: function (response) {
+                            calendar.addEvent({
+                                title: response.loginId,
+                                start: response.start,
+                                end: response.end,
+                                reservationId: response.id
+                            })
+                        },
+                    })
+                }
+                calendar.unselect();
+            },
+
+            eventClick: function (info) {
+                console.log("reservationId", info.event.extendedProps.reservationId);
+                if (confirm(info.event.title + " - 삭제하시겠습니까?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "del-reservation",
+                        data: {
+                            'id': info.event.extendedProps.reservationId
+                        },
+                        success: function (response) {
+                            info.event.remove();
+                        }
+                    })
+                }
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/reservation/car/",
+            data: {
+                'loginId': name,
+                'carId': 2,
+                'start': info.startStr,
+                'end': info.endStr
+            },
+
+            success: function (response) {
+                calendar.addEvent({
+                    title: response.loginId,
+                    start: response.start,
+                    end: response.end,
+                    reservationId: response.id
+                })
+            },
+        })
+
+        calendar.render();
+    });
+
+
+</script>
+</html>

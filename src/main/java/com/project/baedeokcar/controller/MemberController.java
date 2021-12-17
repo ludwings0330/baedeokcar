@@ -43,12 +43,14 @@ public class MemberController {
     @PostMapping("/login")
     public String login(@ModelAttribute MemberJoinDto member, HttpSession session) {
         MemberDto loginMember = memberService.login(member);
+
+        if (loginMember == null) {
+            return "login";
+        }
+
         session.setAttribute("authInfo", loginMember);
         session.setMaxInactiveInterval(60 * 10);
 
-        if (loginMember == null) {
-            throw new IllegalStateException("아이디 / 비밀번호가 일치하지 않습니다.");
-        }
 
         return "redirect:/";
     }

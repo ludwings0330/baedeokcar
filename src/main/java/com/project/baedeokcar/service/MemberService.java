@@ -1,5 +1,6 @@
 package com.project.baedeokcar.service;
 
+import com.project.baedeokcar.domain.Member;
 import com.project.baedeokcar.domain.dto.member.MemberDto;
 import com.project.baedeokcar.domain.dto.member.MemberJoinDto;
 import com.project.baedeokcar.domain.dto.member.MemberReqDto;
@@ -30,4 +31,6 @@ public interface MemberService {
 
     //회원 정보 수정
     public MemberResDto modifyMemberInfo(MemberReqDto member);
+
+    Member findOneByLoginId(String id);
 }

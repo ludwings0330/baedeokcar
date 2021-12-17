@@ -16,9 +16,13 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .excludePathPatterns("/login")
+                .addPathPatterns("/read-car/**")
+                .addPathPatterns("/car-list/**")
                 .addPathPatterns("/car/**")
+                .addPathPatterns("/own-car-list/**")
                 .addPathPatterns("/posts/**")
-                .addPathPatterns("/reservation/**");
+                .addPathPatterns("/save-reservation/**")
+                .addPathPatterns("/reservations/**");
 
         WebMvcConfigurer.super.addInterceptors(registry);
     }

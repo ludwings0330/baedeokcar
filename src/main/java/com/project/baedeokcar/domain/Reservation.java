@@ -1,14 +1,14 @@
 package com.project.baedeokcar.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reservation extends BaseTimeEntity {
@@ -42,8 +42,9 @@ public class Reservation extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private ReservationState state = ReservationState.RESERVED;
 
-    private int price;
-    private int useTime;
+    private LocalDate start;
+    private LocalDate end;
+
     //==relation method==//
     public void setMember(Member member) {
         this.member = member;
@@ -61,8 +62,18 @@ public class Reservation extends BaseTimeEntity {
     }
 
     //==end of relation method==//
+    public void setMemberAndCarRelation(Member member, Car car) {
+        this.member = member;
+        member.addReservation(this);
+
+        this.car = car;
+        car.addReservation(this);
+    }
+
 
     //==business logic==//
+
+
     public void cancelReservation() {
         this.state = ReservationState.CANCEL;
     }
@@ -77,21 +88,8 @@ public class Reservation extends BaseTimeEntity {
 
     public int getPrice() {
         // useTime 은 예약에 따라 계산되도록 변경해야함.
-        useTime = 3;
-
-        return car.getPrice() * getUseTime();
+        Period between = Period.between(start, end);
+        return car.getPrice() * between.getDays();
     }
     //==end of business logic==//
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "member=" + member +
-                ", car=" + car +
-                ", coupon=" + coupon +
-                ", state=" + state +
-                ", price=" + price +
-                ", useTime=" + useTime +
-                '}';
-    }
 }

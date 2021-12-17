@@ -61,11 +61,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberDto login(MemberJoinDto member) {
-        Member findMember = memberRepository.findByLoginId(member.getLoginId()).get();
-        if (findMember != null) {
-            if (verificationMember(member, findMember)) {
-                return new MemberDto(findMember);
-            }
+        Optional<Member> findMember = memberRepository.findByLoginId(member.getLoginId());
+        if (findMember.isPresent()) {
+            return new MemberDto(findMember.get());
         }
         return null;
     }
@@ -95,5 +93,16 @@ public class MemberServiceImpl implements MemberService {
             ret = false;
 
         return ret;
+    }
+
+    @Override
+    public Member findOneByLoginId(String id) {
+        Optional<Member> findMember = memberRepository.findByLoginId(id);
+
+        if (findMember.isPresent()) {
+            return findMember.get();
+        }
+
+        return null;
     }
 }

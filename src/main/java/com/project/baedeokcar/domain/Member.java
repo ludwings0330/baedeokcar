@@ -31,7 +31,7 @@ public class Member extends BaseTimeEntity{
     @OneToMany(mappedBy = "owner")
     private List<Car> carList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", orphanRemoval = true)
+    @OneToMany(mappedBy = "member")
     private List<Reservation> reservationList = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner")
