@@ -60,6 +60,8 @@ dependencies {
 
     //aop
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    implementation 'org.mariadb.jdbc:mariadb-java-clinet'
 }
 
 test {
