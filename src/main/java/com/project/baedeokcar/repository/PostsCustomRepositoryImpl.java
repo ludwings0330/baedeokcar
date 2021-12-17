@@ -1,18 +1,14 @@
 package com.project.baedeokcar.repository;
 
 import com.project.baedeokcar.domain.posts.Posts;
-import com.project.baedeokcar.domain.posts.QPosts;
 import com.querydsl.core.QueryResults;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.expression.Lists;
 
 import java.util.List;
 
