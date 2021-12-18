@@ -2,6 +2,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+      use-new-id-generator-mappings: false
+
     # application 실행시 모든 테이블 drop 후, create
     # 개발 단계에서만 적용
 #      ddl-auto: update
@@ -13,10 +15,20 @@ spring:
         # sql 포맷에 맞춰서 보여준다.
         format_sql: true
 
+  datasource:
+    url: jdbc:mariadb://baedeokcar-webservice.c7jrfmuxpeil.ap-northeast-2.rds.amazonaws.com:3306/baedeokcar
+    username: admin
+    password: ludwings0330
+    driver-class-name: org.mariadb.jdbc.Driver
+
 
   # 프로젝트 변경 후에 만들어진 결과를 보관(캐싱)하지 않도록 설정
   thymeleaf:
     cache: false
+    prefix: classpath:/templates/
+    servlet:
+      content-type: text/html
+    suffix: .html
   servlet:
     multipart:
       max-file-size: 10MB
@@ -24,4 +36,3 @@ spring:
 
 logging.level:
   org.hibernate.SQL: debug
-

@@ -71,5 +71,8 @@ public class IndexController {
         return "/car/car";
     }
 
-
+    @GetMapping("/")
+    public String indexForm() {
+        return "index";
+    }
 }
