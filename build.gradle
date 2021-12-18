@@ -61,7 +61,10 @@ dependencies {
     //aop
     implementation 'org.springframework.boot:spring-boot-starter-aop'
 
-    compile( 'org.mariadb.jdbc:mariadb-java-clinet')
+    // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.4'
+
+
 }
 
 test {
@@ -91,10 +94,6 @@ configurations {
 compileQuerydsl.doFirst {
     if(file(querydslDir).exists())
         delete(file(querydslDir))
-}
-
-tasks.withType(JavaCompile) {
-    options.annotationProcessorGeneratedSourcesDirectory(querydslDir)
 }
 //querydsl 추가 끝
 

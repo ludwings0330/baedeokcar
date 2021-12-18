@@ -1,11 +1,11 @@
 spring:
   jpa:
     hibernate:
+      ddl-auto: none
     # application 실행시 모든 테이블 drop 후, create
     # 개발 단계에서만 적용
 #      ddl-auto: update
 #      ddl-auto: create
-
     properties:
       hibernate:
         # 콘솔에 sql을 보여준다. 성능 점검 필요
@@ -13,11 +13,6 @@ spring:
         # sql 포맷에 맞춰서 보여준다.
         format_sql: true
 
-#  datasource:
-#    url: jdbc:h2:tcp://localhost/~/baedeokcar
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
 
   # 프로젝트 변경 후에 만들어진 결과를 보관(캐싱)하지 않도록 설정
   thymeleaf:
@@ -29,3 +24,4 @@ spring:
 
 logging.level:
   org.hibernate.SQL: debug
+
