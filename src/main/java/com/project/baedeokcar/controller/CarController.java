@@ -70,7 +70,7 @@ public class CarController {
 
         model.addAttribute("allCars", allCars);
 
-        return "/car/car-list";
+        return "car/car-list";
     }
 
     // 회원이 소유중인 차량 목록
