@@ -21,7 +21,7 @@ before_deploy:
   - zip -r baedeokcar-springboot2-webservice *
   - mkdir -p deploy
   - mv baedeokcar-springboot2-webservice.zip deploy/baedeokcar-springboot2-webservice.zip
-#
+#2
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY
