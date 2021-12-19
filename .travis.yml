@@ -12,15 +12,13 @@ cache:
 
 script: "./gradlew clean build"
 
-notifications:
-  email:
-    recipients:
-      - ludwings0330@gmail.com
+before_install:
+  - chmod +x gradlew
 
 before_deploy:
   - zip -r baedeokcar-springboot2-webservice *
   - mkdir -p deploy
-  - mv baedeokcar-springboot2-webservice.zip deploy/baedeokcar-springboot2-webservice.zip
+  - mv  baedeokcar-springboot2-webservice.zip deploy/baedeokcar-springboot2-webservice.zip
 
 deploy:
   - provider: s3
@@ -37,13 +35,17 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-
     bucket: baedeokcar-springboot-build
     key: baedeokcar-springboot2-webservice.zip
-
     bundle_type: zip
     application: baedeokcar-springboot2-webservice
-
     deployment_group: baedeokcar-springboot2-webservice-group
+
     region: ap-northeast-2
     wait-until-deployed: true
+
+
+notifications:
+  email:
+    recipients:
+      - ludwings0330@gmail.com
