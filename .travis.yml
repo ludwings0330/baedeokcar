@@ -16,3 +16,20 @@ notifications:
   email:
     recipients:
       - ludwings0330@gmail.com
+
+before_deploy:
+  - zip -r baedeokcar-springboot2-webservice *
+  - mkdir -p deploy
+  - mv baedeokcar-springboot2-webservice.zip deploy/baedeokcar-springboot2-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+    bucket: baedeokcar-springboot-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
