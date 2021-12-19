@@ -68,7 +68,7 @@ public class IndexController {
 
     @GetMapping("/car")
     public String carForm() {
-        return "/car/car";
+        return "car/car";
     }
 
     @GetMapping("/")

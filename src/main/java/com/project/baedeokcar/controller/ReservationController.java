@@ -22,7 +22,7 @@ public class ReservationController {
     @GetMapping("/reservations")
     public String reservationForm(@RequestParam(name="id", defaultValue =  "0") Long carId, Model model) {
         model.addAttribute("carId", carId);
-        return "/reservation/reservations";
+        return "reservation/reservations";
     }
 
 

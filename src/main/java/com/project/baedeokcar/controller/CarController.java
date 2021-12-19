@@ -36,22 +36,22 @@ public class CarController {
         CarReadResDto findCarDto = carService.findOneById(carId);
         model.addAttribute("car", findCarDto);
 
-        return "/car/read";
+        return "car/read";
     }
 
     // 자동차 Id를 알고 있어야지?
-    @GetMapping("/del-car/{carId}")
+    @GetMapping("del-car/{carId}")
     public String deleteCar(@PathVariable Long carId) {
         carService.delete(carId);
 
-        return "forward:/own-car-list";
+        return "forward:own-car-list";
     }
 
     // 차량 정보 수정 폼
     @GetMapping("/mod-car")
     @PerfLogging
     public String modifyCarForm(@ModelAttribute CarModReqDto request) throws Exception {
-        return "/car/car-modify";
+        return "car/car-modify";
     }
 
     // 차량 정보 수정
@@ -60,7 +60,7 @@ public class CarController {
     public String modifyCarInfo(@ModelAttribute CarModReqDto request, HttpServletRequest rq) {
         carService.modifyCar(request);
 
-        return "redirect:/own-car-list";
+        return "redirect:own-car-list";
     }
 
     // 전체 차량 목록
@@ -80,6 +80,6 @@ public class CarController {
         String loginId = authInfo.getLoginId();
         List<CarListResDto> ownCars = carService.getOwnCars(loginId);
         model.addAttribute("allCars", ownCars);
-        return "/car/own-car-list";
+        return "car/own-car-list";
     }
 }
