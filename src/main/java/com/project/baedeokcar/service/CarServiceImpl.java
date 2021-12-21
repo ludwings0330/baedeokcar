@@ -24,8 +24,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class CarServiceImpl implements CarService {
+
     private final CarRepository carRepository;
     private final MemberRepository memberRepository;
+    private final FileUploadService fileUploadService;
 
     @Transactional
     @Override
@@ -34,8 +36,11 @@ public class CarServiceImpl implements CarService {
         Optional<Member> findMember = memberRepository.findByLoginId(loginId);
 
         Car newCar = car.toEntity();
-        MultipartFile file = car.getFile();
+        String savedFileName = fileUploadService.uploadImage(car.getFile());
+        newCar.setSaveFileName(savedFileName);
 
+        /* Local 위치에 저장하는 코드
+        MultipartFile file = car.getFile();
 
         Path copyOfLocation = Paths.get("/Users/ludwings/study/baedeokcar/src/main/resources/static/cars" + File.separator + newCar.getSavedFileName());
 
@@ -45,6 +50,7 @@ public class CarServiceImpl implements CarService {
             e.printStackTrace();
             throw new Exception("파일 생성 오류");
         }
+        */
 
         newCar.setOwner(findMember.get());
 

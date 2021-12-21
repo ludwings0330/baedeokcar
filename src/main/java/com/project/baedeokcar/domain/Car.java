@@ -83,5 +83,9 @@ public class Car extends BaseTimeEntity {
     public void returnCar() {
         this.state = CarState.NOT_IN_USE;
     }
+
+    public void setSaveFileName(String savedFileName) {
+        this.savedFileName = savedFileName;
+    }
     //==end of business logic==//
 }

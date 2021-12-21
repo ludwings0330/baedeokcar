@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -19,17 +20,15 @@ public class CarSaveReqDto {
     private MultipartFile file;
 
     public Car toEntity() {
-        LocalDateTime now = LocalDateTime.now();
-
         String originFileName = file.getOriginalFilename();
-        String ext = originFileName.substring(originFileName.lastIndexOf('.'));
+
+        String now = UUID.randomUUID().toString().concat(originFileName.substring(originFileName.lastIndexOf('.')));
 
         return Car.builder()
                 .info(info)
                 .price(price)
                 .driveDistance(driveDistance)
-                .originFileName(file.getOriginalFilename())
-                .savedFileName(now.toString() + ext )
+                .savedFileName(now)
                 .carModel(carModel)
                 .year(year)
                 .build();

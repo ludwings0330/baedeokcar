@@ -8,7 +8,7 @@
         </div>
         <div class="card mb-4" style="margin-top: 30px;">
             <div class="card-body">
-                <img class="card-img-top" th:width="300px" th:height="400px" th:src="@{/cars/} + ${car.getSavedFileName()}" th:alt="${car.getOriginFileName()}" style="max-height: 400px; max-width: 400px; display: block; margin: 0px auto">
+                <img class="card-img-top" th:width="300px" th:height="400px" th:src="${car.getSavedFileName()}" th:alt="${car.getOriginFileName()}" style="max-height: 400px; max-width: 400px; display: block; margin: 0px auto">
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="loginId" name="loginId" th:value="${car.getLoginId()}" readonly/>
